@@ -5,6 +5,7 @@ const clear = require('clear');
 const figlet = require('figlet');
 const inquirer = require('./lib/inquirer');
 const copytemplate = require('./lib/copytemplate');
+const execSync = require('child_process').execSync;
 
 clear();
 
@@ -22,6 +23,18 @@ const run = async () => {
   } else {
     copytemplate.initTest();
   }
+
+  console.log(
+    chalk.green('Updating node modules...')
+  )
+
+  update = execSync('npm i');
+  console.log(
+    chalk.yellow(update.toString())
+  )
+  console.log(
+    chalk.green('Happy Testing!')
+  )
 };
 
 run();
