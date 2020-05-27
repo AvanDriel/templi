@@ -5,7 +5,9 @@ const clear = require('clear');
 const figlet = require('figlet');
 const inquirer = require('./lib/inquirer');
 const copytemplate = require('./lib/copytemplate');
-const execSync = require('child_process').execSync;
+const exec = require('await-exec');
+const ora = require('ora');
+const cliSpinners = require('cli-spinners');
 
 clear();
 
@@ -24,17 +26,25 @@ const run = async () => {
     copytemplate.initTest();
   }
 
-  console.log(
-    chalk.green('Updating node modules...')
-  )
+  const spinner = ora({
+    text: 'Installing required modules',
+    spinner: cliSpinners.dots
+  }).start()
 
-  update = execSync('npm i');
-  console.log(
-    chalk.yellow(update.toString())
-  )
-  console.log(
-    chalk.green('Happy Testing!')
-  )
+  update = await exec('npm i');
+
+  if(update.stderr) {
+    // TODO: Handle error output
+  } else if (update.stdout) {
+    spinner.succeed();
+    
+    console.log(
+      chalk.yellow(update.stdout)
+    )
+    console.log(
+      chalk.green('Happy Testing!')
+    )
+  }
 };
 
 run();

@@ -7,13 +7,16 @@
   "author": "Alwin van Driel",
   "license": "ISC",
   "dependencies": {
+    "await-exec": "^0.1.2",
     "chalk": "^4.0.0",
     "clear": "^0.1.0",
+    "cli-spinners": "^2.3.0",
     "clui": "^0.3.6",
     "figlet": "^1.4.0",
     "inquirer": "^7.1.0",
     "lodash": "^4.17.15",
     "minimist": "^1.2.5",
+    "ora": "^4.0.4",
     "touch": "^3.1.0"
   },
   "bin": {
