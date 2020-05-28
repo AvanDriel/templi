@@ -19,33 +19,40 @@ console.log(
 
 const run = async () => {
   const templateOptions = await inquirer.askTestChoice();
+  let updateResponse;
 
   if(templateOptions['template-choice'] === 'unit-test') {
     let creationResponse = await copytemplate.initUnittest(templateOptions);
+    updateResponse = await updateModules('jest')
   } else {
     copytemplate.initTest();
   }
 
+  console.log(
+    chalk.yellow(updateResponse)
+  )
+
+  console.log(
+    chalk.green('Happy Testing!')
+  )
+};
+
+run();
+
+const updateModules = async (packageName) => {
   const spinner = ora({
-    text: 'Installing required modules',
+    text: `Installing ${packageName}`,
     spinner: cliSpinners.dots
   }).start()
 
   // TODO: Change to install specific packages
-  update = await exec('npm i');
+  update = await exec(`npm install --save-dev ${packageName}`);
 
   if(update.stderr) {
-    // TODO: Handle error output
+    spinner.fail();
+    return update.stderr
   } else if (update.stdout) {
     spinner.succeed();
-    
-    console.log(
-      chalk.yellow(update.stdout)
-    )
-    console.log(
-      chalk.green('Happy Testing!')
-    )
+    return update.stdout
   }
-};
-
-run();
+}
