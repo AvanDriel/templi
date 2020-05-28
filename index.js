@@ -31,6 +31,7 @@ const run = async () => {
     spinner: cliSpinners.dots
   }).start()
 
+  // TODO: Change to install specific packages
   update = await exec('npm i');
 
   if(update.stderr) {
