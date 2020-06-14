@@ -1,6 +1,6 @@
 {
   "name": "@alwinvd/templi",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Cli tool for installing testing methods and adding testing templates for your project",
   "main": "index.js",
   "keywords": [],
