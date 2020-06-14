@@ -24,8 +24,11 @@ const run = async () => {
   if(templateOptions['template-choice'] === 'unit-test') {
     let creationResponse = await copytemplate.initUnittest(templateOptions);
     updateResponse = await updateModules('jest')
-  } else {
-    copytemplate.initTest();
+  } else if (templateOptions['template-choice'] === 'integration-test') {
+    // TODO: Add enzyme and react version adapter
+    updateResponse = await updateModules('jest')
+  } else if (templateOptions['template-choice'] === 'end-to-end-test') {
+    updateResponse = await updateModules('cypress')
   }
 
   console.log(
@@ -45,7 +48,6 @@ const updateModules = async (packageName) => {
     spinner: cliSpinners.dots
   }).start()
 
-  // TODO: Change to install specific packages
   update = await exec(`npm install --save-dev ${packageName}`);
 
   if(update.stderr) {
