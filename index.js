@@ -13,7 +13,7 @@ clear();
 
 console.log(
     chalk.yellow(
-      figlet.textSync('TestTemplate', { horizontalLayout: 'full'})
+      figlet.textSync('Templi', { horizontalLayout: 'full'})
     )
 )
 

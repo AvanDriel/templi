@@ -1,7 +1,7 @@
 {
-  "name": "test-template",
-  "version": "1.0.3",
-  "description": "create test template",
+  "name": "@alwinvd/templi",
+  "version": "0.0.2",
+  "description": "Cli tool for installing testing methods and adding testing templates for your project",
   "main": "index.js",
   "keywords": [],
   "author": "Alwin van Driel",
@@ -20,6 +20,6 @@
     "touch": "^3.1.0"
   },
   "bin": {
-    "create-test": "./index.js"
+    "templi": "./index.js"
   }
 }
