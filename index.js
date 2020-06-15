@@ -35,6 +35,20 @@ const run = async () => {
     chalk.yellow(updateResponse)
   )
 
+  if(templateOptions['template-choice'] === 'unit-test') {
+    console.log(
+      chalk.green("You can now use 'npm run jest' to run your unit tests!")
+    )
+  } else if (templateOptions['template-choice'] === 'integration-test') {
+    console.log(
+      chalk.green("You can now use 'npm run cypress' to run your unit tests!")
+    )
+  } else if (templateOptions['template-choice'] === 'end-to-end-test') {
+    console.log(
+      chalk.green("You can now use 'npm run integration' to run your unit tests!")
+    )
+  }
+
   console.log(
     chalk.green('Happy Testing!')
   )
