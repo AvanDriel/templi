@@ -28,3 +28,11 @@ For now, Templi is made to support three kinds of automated testing:
 
 These three will be de only types of automated testing I'll focus on for now, and are very incomplete.
 Once these are more fleshed out, I'll take a look at more types of testing to integrate, or other ways to implement these.
+
+## Troubleshooting
+
+When you run your unit tests and get the error
+
+`ReferenceError: expect is not defined`
+
+Please check your node version, and update if needed
