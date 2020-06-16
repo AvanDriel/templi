@@ -4,9 +4,6 @@ const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
 const inquirer = require('./lib/inquirer');
-const copytemplate = require('./lib/copytemplate');
-const ora = require('ora');
-const cliSpinners = require('cli-spinners');
 const unittests = require('./lib/unittests');
 const endToEndTests = require('./lib/endToEndTests');
 
@@ -20,29 +17,31 @@ console.log(
 
 const run = async () => {
   const testChoices = await inquirer.testOptions();
-
-  let updateResponse;
+  let initUnittests = ''
+  let initE2ETests = ''
 
   for(let i = 0; i < testChoices['test-choice'].length; i++) {
     let choice = testChoices['test-choice'][i]
     if(choice === 'unit-test') {
-      const initUnittests = await unittests.createUnitTests();
-      
-      console.log(
-        chalk.yellow(initUnittests)
-      )
+      initUnittests = await unittests.createUnitTests();
     }
     if(choice === 'integration-test') {
       //ask integration test questions
     }
     if(choice === 'end-to-end-test') {
-      //ask e2e test questions
-      const initE2ETests = await endToEndTests.createEndToEndTests();
-      
-      console.log(
-        chalk.yellow(initE2ETests)
-      )
+      initE2ETests = await endToEndTests.createEndToEndTests();
     }
+  }
+
+  if(initUnittests !== '') {
+    console.log(
+      chalk.green(initUnittests)
+    )
+  }
+  if(initE2ETests !== '') {
+    console.log(
+      chalk.green(initE2ETests)
+    )
   }
 
   console.log(
