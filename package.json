@@ -1,6 +1,6 @@
 {
   "name": "templi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cli tool for installing testing methods and adding testing templates for your project",
   "main": "index.js",
   "keywords": [],
