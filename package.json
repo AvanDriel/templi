@@ -1,5 +1,5 @@
 {
-  "name": "@alwinvd/templi",
+  "name": "templi",
   "version": "0.0.7",
   "description": "Cli tool for installing testing methods and adding testing templates for your project",
   "main": "index.js",

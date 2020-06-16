@@ -5,19 +5,11 @@
 
 Templi is a tool made to make it easier to integrate automated testing in your project.
 
-To get started, install by running 
+To get started, just run 
 
-`npm i -g @alwinvd/templi`.
+`npx templi`.
 
-
-Templi needs to be installed globally, to prevent unneeded dependencies in the project you actually want to integrate testing.
-
-
-After installing, just run 
-
-`templi` 
-
-to get started.
+In the project you want to install the tests in.
 
 ## Current functionality
 
