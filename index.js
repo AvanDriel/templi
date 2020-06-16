@@ -5,9 +5,10 @@ const clear = require('clear');
 const figlet = require('figlet');
 const inquirer = require('./lib/inquirer');
 const copytemplate = require('./lib/copytemplate');
-const exec = require('await-exec');
 const ora = require('ora');
 const cliSpinners = require('cli-spinners');
+const unittests = require('./lib/unittests');
+const endToEndTests = require('./lib/endToEndTests');
 
 clear();
 
@@ -18,35 +19,30 @@ console.log(
 )
 
 const run = async () => {
-  const templateOptions = await inquirer.askTestChoice();
+  const testChoices = await inquirer.testOptions();
+
   let updateResponse;
 
-  if(templateOptions['template-choice'] === 'unit-test') {
-    let creationResponse = await copytemplate.initUnittest(templateOptions);
-    updateResponse = await updateModules('jest')
-  } else if (templateOptions['template-choice'] === 'integration-test') {
-    // TODO: Add enzyme and react version adapter
-    updateResponse = await updateModules('jest')
-  } else if (templateOptions['template-choice'] === 'end-to-end-test') {
-    updateResponse = await updateModules('cypress')
-  }
-
-  console.log(
-    chalk.yellow(updateResponse)
-  )
-
-  if(templateOptions['template-choice'] === 'unit-test') {
-    console.log(
-      chalk.green("You can now use 'npm run jest' to run your unit tests!")
-    )
-  } else if (templateOptions['template-choice'] === 'integration-test') {
-    console.log(
-      chalk.green("You can now use 'npm run cypress' to run your unit tests!")
-    )
-  } else if (templateOptions['template-choice'] === 'end-to-end-test') {
-    console.log(
-      chalk.green("You can now use 'npm run integration' to run your unit tests!")
-    )
+  for(let i = 0; i < testChoices['test-choice'].length; i++) {
+    let choice = testChoices['test-choice'][i]
+    if(choice === 'unit-test') {
+      const initUnittests = await unittests.createUnitTests();
+      
+      console.log(
+        chalk.yellow(initUnittests)
+      )
+    }
+    if(choice === 'integration-test') {
+      //ask integration test questions
+    }
+    if(choice === 'end-to-end-test') {
+      //ask e2e test questions
+      const initE2ETests = await endToEndTests.createEndToEndTests();
+      
+      console.log(
+        chalk.yellow(initE2ETests)
+      )
+    }
   }
 
   console.log(
@@ -55,20 +51,3 @@ const run = async () => {
 };
 
 run();
-
-const updateModules = async (packageName) => {
-  const spinner = ora({
-    text: `Installing ${packageName}`,
-    spinner: cliSpinners.dots
-  }).start()
-
-  update = await exec(`npm install --save-dev ${packageName}`);
-
-  if(update.stderr) {
-    spinner.fail();
-    return update.stderr
-  } else if (update.stdout) {
-    spinner.succeed();
-    return update.stdout
-  }
-}
