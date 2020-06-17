@@ -21,14 +21,29 @@ const run = async () => {
   let initE2ETests = ''
 
   for(let i = 0; i < testChoices['test-choice'].length; i++) {
+    clear();
+
+    console.log(
+        chalk.yellow(
+          figlet.textSync('Templi', { horizontalLayout: 'full'})
+        )
+    )
+
     let choice = testChoices['test-choice'][i]
+    
     if(choice === 'unit-test') {
+      console.log(
+        chalk.green('Unit test configuration')
+      )
       initUnittests = await unittests.createUnitTests();
     }
     if(choice === 'integration-test') {
       //ask integration test questions
     }
     if(choice === 'end-to-end-test') {
+      console.log(
+        chalk.green('End to End test configuration')
+      )
       initE2ETests = await endToEndTests.createEndToEndTests();
     }
   }
