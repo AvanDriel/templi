@@ -6,6 +6,10 @@
   "keywords": [],
   "author": "Alwin van Driel",
   "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/AvanDriel/templi"
+  },
   "dependencies": {
     "await-exec": "^0.1.2",
     "chalk": "^4.0.0",

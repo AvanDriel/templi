@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/templi.svg)](https://badge.fury.io/js/templi)
+
 # Templi - Test Template Cli Tool
 
 **(Note: Templi is still in early development and testing, and not intended for use in actual projects)**
