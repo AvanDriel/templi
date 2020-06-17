@@ -1,14 +1,14 @@
 {
   "name": "templi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Cli tool for installing testing methods and adding testing templates for your project",
   "main": "index.js",
   "keywords": [],
   "author": "Alwin van Driel",
   "license": "ISC",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/AvanDriel/templi"
+    "type": "git",
+    "url": "https://github.com/AvanDriel/templi"
   },
   "dependencies": {
     "await-exec": "^0.1.2",
